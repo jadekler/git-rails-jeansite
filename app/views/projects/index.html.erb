@@ -1,0 +1,14 @@
+<h4>Listing projects</h4>
+
+<% @projects.each_with_index do |project, index| %>
+    <% if index%2 == 0 %>
+        <div class="row">
+    <% end %>
+    <div class="six columns project">
+      <p><%= project.title %></p>
+      <p><a href="<%= project.github_url %>" target="_blank"><%= project.github_url %></a></p>
+    </div>
+    <% if index%2 == 1 %>
+        </div>
+    <% end %>
+<% end %>
