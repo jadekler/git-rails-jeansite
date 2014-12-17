@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216220540) do
+ActiveRecord::Schema.define(version: 20141217090540) do
 
   create_table "blogs", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
     t.string   "short"
+    t.binary   "content",    limit: 10485760
   end
 
   create_table "projects", force: true do |t|

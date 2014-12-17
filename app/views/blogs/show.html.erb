@@ -1,5 +1,5 @@
-<p id="notice"><%= notice %></p>
-
-This is blog: <%= @blog.title %>
-
-<%= link_to 'Back', blogs_path %>
+<h3><%= @blog.title %></h3>
+<p><%= link_to 'Back', blogs_path %></p>
+<div>
+  <%= @blog.content %>
+</div>
