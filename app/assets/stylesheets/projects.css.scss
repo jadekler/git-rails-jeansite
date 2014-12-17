@@ -1,7 +1,12 @@
 .project {
   border: 1px solid #D0D0D0;
   border-radius: 5px;
-  margin: 10px;
+  margin: 10px 0;
+}
+
+.project:not(:first-of-type) {
+  margin-left: 10px;
+  float: right;
 }
 
 .project p {

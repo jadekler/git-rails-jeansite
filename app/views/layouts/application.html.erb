@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Jeansite</title>
+  <title>Jean</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<div class="container" id="navbar">
+  <h4><a href="blogs">Blog</a></h4>
+  <h4><a href="projects">Projects</a></h4>
+  <h4 class="pull-right"><a href="contact">Contact</a></h4>
+</div>
 <div class="container">
   <%= yield %>
 </div>
