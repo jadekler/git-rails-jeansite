@@ -12,3 +12,12 @@
 .project p:not(:first-of-type) {
   border-top: 1px solid #D0D0D0;
 }
+
+.project p:nth-child(2) {
+  text-align: center;
+}
+
+.project p i {
+  font-size: 20em;
+  color: #D0D0D0;
+}
