@@ -1,7 +1,7 @@
 <div>
   <% @blogs.each do |blog| %>
       <div>
-        <%= blog.title %> - <%= link_to 'Show', blog %>
+        <%= blog.title %> - <%= link_to 'Show', "/blogs/#{blog.id}" %>
       </div>
   <% end %>
 </div>
