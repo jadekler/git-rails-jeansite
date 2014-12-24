@@ -19,7 +19,7 @@ I went ahead and posted it on Hacker news and Reddit, where I got a lot of (fair
 #### Revert To Earlier Commit
 ###### Feels like svn revert
 
-Commands. Note: idea from this stack overflow response
+Commands. Note: idea from [http://stackoverflow.com/questions/1895059/revert-to-a-commit-by-sha-hash](this stack overflow response)
 ```
 # Reset the index to the desired SSH
 git reset [SSH]
