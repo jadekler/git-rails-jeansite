@@ -1,6 +1,3 @@
 <h3><%= @blog.title %></h3>
 <p><%= link_to 'Back', blogs_path %></p>
-<div><%= markdown "This is *bongos*, indeed." %></div>
-<div>
-  <%= @blog.content %>
-</div>
+<div><%= markdown @blog.content %></div>
