@@ -8,6 +8,379 @@ projects = Project.create([
 ])
 
 blogs = Blog.create([
+        {title: 'Wolfram Programming Language', created_at: DateTime.parse('26-02-2014'), content: ""},
+        {title: 'Wolfram Programming Language', created_at: DateTime.parse('26-02-2014'), content: ""},
+        {title: 'Go Website Skeleton', created_at: DateTime.parse('26-03-2014'), content: "So after working with Go for a while in creating sites, I've noticed a serious lack of community consensus on structure. Most people are borrowing ideas from other frameworks at best. This is pretty hard for beginniners who are used to jumping into a language that has a well established operating style. To help start getting Go there (at least for websites), I've made a skeleton that should serve well for any small-medium sized site.
+
+You can checkout the skeleton [https://github.com/jadekler/git-go-websiteskeleton](source code here).
+
+I went ahead and posted it on Hacker news and Reddit, where I got a lot of (fair) criticism that has helped refine it and make it pretty lean. If you have any ideas for further improvements, I'd really love to hear them! Shoot me an email at [mailto:jadekler@gmail.com](jadekler@gmail.com)."},
+        {title: 'Advanced Usage Git Guide', created_at: DateTime.parse('12-03-2014'), content: "Due to popular demand, here are a couple more git tips and tricks. These won't exactly be edge cases, but they should hopefully not be your average day usage. This set of commands, combined with the Quickstart Git Guide, should get you through most problems you face.
+#### Revert To Earlier Commit
+###### Feels like svn revert
+
+Commands. Note: idea from this stack overflow response
+```
+# Reset the index to the desired SSH
+git reset [SSH]
+
+# Move the branch pointer back to the previous HEAD
+git reset --soft HEAD@{1}
+
+# Commit the revert
+git commit -m 'Reverted to [SSH]'
+git push
+
+# Update working copy to reflect new commit
+git reset --hard
+```
+
+Example
+```
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git reset 7c9165064021e62e4c2a3fb925a14bc535240446
+Unstaged changes after reset:
+D   test/index.html
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git reset --soft HEAD@{1}
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git commit -m 'Reverted to 7c9165064021e62e4c2a3fb925a14bc535240446'
+[master af7f80a] Reverted to 7c9165064021e62e4c2a3fb925a14bc535240446
+ 1 file changed, 5 insertions(+)
+ create mode 100644 test/index.html
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git reset --hard
+HEAD is now at af7f80a Reverted to 7c9165064021e62e4c2a3fb925a14bc535240446
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git push
+Counting objects: 5, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (4/4), 343 bytes | 0 bytes/s, done.
+Total 4 (delta 1), reused 2 (delta 0)
+To https://github.com/jadekler/git-misc.git
+   6afb73c..af7f80a  master -> master
+```
+
+#### Git Pull Conflicts
+
+Sometimes when you pull you will get a message like 'Your local changes to the following files would be overwritten by merge. Please, commit your changes or stash them before you can merge.' There are two ways to deal with this: discarding your changes and pulling, stashing your changes and pulling or commiting your changes, fixing conflicts, and pulling. Let's briefly walk through these three options.
+
+###### Git Pull Conflicts - Discard Changes
+
+Commands
+```
+# Here you see a pull method. You choose to (a) discard your changes
+git pull
+
+# This discards all changes you've made
+git checkout .
+
+# Now you can cleanly pull
+git pull
+```
+
+Example
+```
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git pull
+remote: Counting objects: 7, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 1), reused 2 (delta 0)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/jadekler/git-misc
+   af7f80a..fdd9556  master     -> origin/master
+Updating af7f80a..fdd9556
+error: Your local changes to the following files would be overwritten by merge:
+    test/index.html
+Please, commit your changes or stash them before you can merge.
+Aborting
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git checkout .
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git pull
+Updating af7f80a..fdd9556
+Fast-forward
+ test/index.html | 2 --
+ 1 file changed, 2 deletions(-)
+```
+
+###### Git Pull Conflicts - Merge Changes
+
+Commands
+```
+# Here you see a pull method. You choose to (b) merge your changes
+git pull
+
+# Add your changes
+git add -A
+git commit -m 'Committing local changes'
+
+# Merge your commit with origin
+git merge origin
+
+# Edit your conflicted file and remove things like >>>>>>> origin and <<<<<<< HEAD
+vim [conflicted file]
+
+# Add your merge fix
+git add -A
+git commit -m 'Committing merge fixes'
+git push
+```
+
+Example
+```
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git pull
+remote: Counting objects: 7, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 1), reused 2 (delta 0)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/jadekler/git-misc
+   b1da90f..5e94678  master     -> origin/master
+Updating b1da90f..5e94678
+error: Your local changes to the following files would be overwritten by merge:
+    test/index.html
+Please, commit your changes or stash them before you can merge.
+Aborting
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git add -A
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git commit -m 'Preparing to merge changes with origin'
+[master f7c3fc7] Preparing to merge changes with origin
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git merge origin
+Auto-merging test/index.html
+CONFLICT (content): Merge conflict in test/index.html
+Automatic merge failed; fix conflicts and then commit the result.
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ vim test/index.html
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git add -A
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git commit -m 'Merge conflicts resolved'
+[master 5eb7336] Merge conflicts resolved
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git push
+Counting objects: 11, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (5/5), 527 bytes | 0 bytes/s, done.
+Total 5 (delta 1), reused 0 (delta 0)
+To https://github.com/jadekler/git-misc.git
+   5e94678..5eb7336  master -> master
+```
+
+###### Git Pull Conflicts - Stash Changes
+
+Commands
+```
+# Here you see a pull method. You choose to (c) stash your changes
+git pull
+
+# Saves your changes in a stack and resets you to origin
+git stash
+
+# Grabbing origin will now work, since your changes are removed (and saved in the stash)
+git pull
+
+# Re-apply your saved changes. Any merge conflicts will be dealth with in the same way that merging works (see Merge Changes above)
+git pop
+```
+
+Example
+```
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git pull
+remote: Counting objects: 7, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 1), reused 2 (delta 0)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/jadekler/git-misc
+   5eb7336..b3e4850  master     -> origin/master
+Updating 5eb7336..b3e4850
+error: Your local changes to the following files would be overwritten by merge:
+    test/index.html
+Please, commit your changes or stash them before you can merge.
+Aborting
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git stash
+Saved working directory and index state WIP on master: 5eb7336 Merge conflicts resolved
+HEAD is now at 5eb7336 Merge conflicts resolved
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git pull
+Updating 5eb7336..b3e4850
+Fast-forward
+ test/index.html | 2 --
+ 1 file changed, 2 deletions(-)
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git stash pop
+Auto-merging test/index.html
+CONFLICT (content): Merge conflict in test/index.html
+```"},
+        {title: 'Quickstart Git Guide', created_at: DateTime.parse('10-03-2014'), content: "This post will serve as a quick, functional guide to jumping into git as well as a refresher for those who've used it before. I will use some examples from SVN as comparison.
+
+#### Git Clone
+###### Feels like svn checkout
+
+Commands
+`git clone [repo address] [local address]`
+
+Example
+```
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs]$ git clone https://github.com/jadekler/git-misc.git
+Cloning into 'git-misc'...
+remote: Reusing existing pack: 540, done.
+remote: Total 540 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (540/540), 13.75 MiB | 4.19 MiB/s, done.
+Resolving deltas: 100% (192/192), done.
+Checking connectivity... done
+```
+
+#### Git Status
+###### Feels like svn status
+
+Commands
+`git status`
+
+Example
+```
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git status
+# On branch master
+# Untracked files:
+#   (use 'git add ...' to include in what will be committed)
+#
+#   test/
+nothing added to commit but untracked files present (use 'git add' to track)
+```
+
+#### Git Add, Commit, Push
+###### Feels like svn commit
+
+Commands
+```
+# -A will add all, including removals
+git add [filename] OR git add -A
+
+# Store commit on local machine
+git commit -m [commit message]
+
+# Send to server
+git push
+```
+
+Example
+```
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git add -A
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git commit -m 'Added test folder'
+[master 3d2a496] Added test folder
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test/index.html
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git push
+Counting objects: 5, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (4/4), 311 bytes | 0 bytes/s, done.
+Total 4 (delta 1), reused 0 (delta 0)
+To https://github.com/jadekler/git-misc.git
+   5f78792..3d2a496  master -> master
+```
+
+#### Git Pull
+###### Feels like svn update
+
+Commands
+`git pull`
+
+Example
+```
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git pull
+remote: Counting objects: 7, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/jadekler/git-misc
+   3d2a496..8bfcfea  master     -> origin/master
+Updating 3d2a496..8bfcfea
+Fast-forward
+ test/index.html | 2 ++
+ 1 file changed, 2 insertions(+)
+```
+
+#### Git Branch Create
+###### Feels like svn checkout trunk branch
+
+Commands
+```
+# Create new branch and switch to it
+git checkout -b [branch name]
+
+# View your branches
+git branch
+
+# Add new branch to repository
+git push origin [branch name]
+```
+
+Example
+```
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git checkout -b newbranch
+Switched to a new branch 'newbranch'
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git branch
+  master
+* newbranch
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git push origin newbranch
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/jadekler/git-misc.git
+ * [new branch]      newbranch -> newbranch
+```
+
+#### Git Branch Pushing
+###### Feels like svn commit
+
+Commands
+```
+# Same as before
+git add -A
+git commit -m [commit message]
+
+# Pushing a branch requires manually specifying the from and to
+git push origin [branch name]
+```
+
+Example
+```
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git add -A
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git commit -m 'Some minor changes to my file in this branch'
+[newbranch 7c91650] Some minor changes to my file in this branch
+ 1 file changed, 2 insertions(+)
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git push origin newbranch
+Counting objects: 7, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (4/4), 332 bytes | 0 bytes/s, done.
+Total 4 (delta 1), reused 0 (delta 0)
+To https://github.com/jadekler/git-misc.git
+   8bfcfea..7c91650  newbranch -> newbranch
+```
+
+#### Git Merge
+###### Feels like svn merge
+
+Commands
+```
+git checkout master
+git merge [branch name]
+git push
+```
+
+Example
+```
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git checkout master
+Switched to branch 'master'
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git merge newbranch
+Updating 8bfcfea..7c91650
+Fast-forward
+ test/index.html | 2 ++
+ 1 file changed, 2 insertions(+)
+[jeand@Jeans-MacBook-Pro-2:/Applications/XAMPP/htdocs/git-misc]$ git push
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/jadekler/git-misc.git
+   8bfcfea..7c91650  master -> master
+```
+"},
+        {title: 'Wolfram Programming Language', created_at: DateTime.parse('26-02-2014'), content: "Long time, no post: lots of long, exhausting trips tend to do that. Anyways, enough of me and onto the content of this post - the [http://www.wolfram.com/wolfram-language/](Wolfram Knowledge-Based Programming Language). Here's a pretty good video explaining some of the things you can do with this language: [http://www.youtube.com/watch?v=_P9HqHVPeik]((youtube)).
+
+I don't see this language being revolutionary, to be honest - Mathematica already does many of the things shown in this video. What stands out to me, though, are three things:
+
+1. 'Knowledge-y' functions: for instance, weather data on the fly (e.g., wind speeds correlated to atmospheric pressure), geographical interpolation (e.g., travelling salesman combined with traffic data), social+cultural data (e.g., facebook mapping)
+1. Human speech abstraction: e.g., Wolfram knowing what the computational equivalent to something like 'square rotated 40 degree tranposed onto map of Raleigh,NC'. This could be a great introduction to learning programming for kids and other newbies (I say that fondly, to be clear)
+1. The ability to create scripts in 'the cloud' (fancy way of saying you can host them on Wolfram's servers and access them through some crazy url). This is pretty neat when you mix it with the aforementioned 'knowledge-y' functions - e.g., creating a weather data API in a couple of minutes, or perhaps an API that you can use to outsource your complex linear algebra computations to
+
+There are certainly some downsides, though. This is not a free product, and it is certainly not open source. This will probably be a paid for product, which combined with the fact that many of the benefits are most useful in a learning or academic environment means that the most use this will see is probably in schools and universities, in the same way that Wolfram Alpha is mostly used by students.
+
+I'd love to give it a try - creating a weather API that I can use d3 to create charts around would be a lot of fun. However, if it is behind even a $10 pay wall I will probably give it a pass. We'll have to wait and see how generous Wolfram feels."},
         {title: 'An Ember.js Widget Tutorial', created_at: DateTime.parse('05-01-2014'), content: "Let's take a look at an easy way to create some pretty cool widgets with Ember.js. See a completed example in the showcase area, found here, and the corresponding code at this github repo.
 
 Our widgets are going to graph some dataset and have a button to switch to a table view. Please note - bootstrap styling was used with this. I'll leave it to you to include it. To get started, let's create a basic widget object, a widget template, and a basic array to hold widgets, and just a little bit of css to style this:
