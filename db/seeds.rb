@@ -7,93 +7,7 @@ projects = Project.create([
         {title: 'Bam Project', github_url: 'http://boom.com'}
 ])
 
-blogs = Blog.create([
-    {title: 'Godoc And You', created_at: DateTime.parse('11-05-2014'), content: ""},
-    {title: 'Godoc And You', created_at: DateTime.parse('11-05-2014'), content: ""},
-    {title: 'Godoc And You', created_at: DateTime.parse('11-05-2014'), content: ""},
-    {title: 'Godoc And You', created_at: DateTime.parse('11-05-2014'), content: ""},
-    {title: 'Godoc And You', created_at: DateTime.parse('11-05-2014'), content: ""},
-    {title: 'The Go interface{} In Ambiguity', created_at: DateTime.parse('25-05-2014'), content: "As many of you may be aware, the interface{} type is basically Go's way of placeholding a spot for ANY other type. As a result, following code works perfectly fine:
-```
-package main
-
-import (
-    \"log\"
-)
-
-func loggit(loggableItem interface{}) {
-    log.Println(loggableItem)
-}
-
-func main() {
-    loggit(5)
-    loggit(\"five\")
-}
-```
-
-That's cool, but what if I'm working in the loggit function without any knowledge of the types of things coming in? How would I go about finding the actual type of the interface{} variable? Well, with the handy reflect package, we can simply do the following:
-
-```
-package main
-
-import (
-    \"log\"
-\"reflect\"
-)
-
-func loggit(loggableItem interface{}) {
-    log.Println(reflect.TypeOf(loggableItem))
-    log.Println(loggableItem)
-}
-
-func main() {
-    loggit(5)
-    loggit(\"five\")
-}
-```
-
-Awesome! Now, how about using those types? There is one more shortcut with this: when you switch something like an interface{}, you can simply use the following switch shorthand:
-
-```
-package main
-
-import (
-    \"log\"
-\"reflect\"
-)
-
-func loggit(loggableItem interface{}) {
-    switch loggableItem.(type) {
-        case int:
-            log.Println(\"This is an int!\")
-        case string:
-            log.Println(\"This is a string!\")
-    }
-
-    log.Println(reflect.TypeOf(loggableItem))
-    log.Println(loggableItem)
-}
-
-func main() {
-    loggit(5)
-    loggit(\"five\")
-}
-```
-
-And, of course, all the above applies to your own structures as well as the int and string that I've used here for example. I hope this has been helpful!"},
-    {title: 'Godoc And You', created_at: DateTime.parse('11-05-2014'), content: "This post will talk briefly about the basic Godoc functionality - if you have already been exposed to godoc, you probably know all of this. Fair warning! For those of you who haven't taken a look at godoc, check out this [summary of godoc](http://blog.golang.org/godoc-documenting-go-code) and quickly read through [Go's recommended Commentary section](http://golang.org/doc/effective_go.html#commentary). What follows is a couple of examples of godoc.
-
-###### Host the entire golang docs...on your machine!
-
-Yep! ALL of the google docs live on your machine. Navigate to the go common code (run `which go` to see where it lives). Type `godoc -http=:6060` and (in your browser) go to `http://localhost:6060`. You can also add -index=true if you'd like searchable docs, as per the officially hosted docs.
-
-###### Use godoc to generate documentation for your code
-
-Just type `godoc -http=:6060 -goroot='/path/to/your/project'`. Simple as that!
-
-###### Use godoc to search for packages in the command line
-
-If I'm looking for the regexp package, I can simply type godoc regexp to get the regexp documentation. If I'm looking for something like 'parse', I can narrow down my search even further with something like godoc regexp | grep parse. Sweet!"},
+@blogs = Blog.create([
         {title: 'Go Website Skeleton', created_at: DateTime.parse('26-03-2014'), content: "So after working with Go for a while in creating sites, I've noticed a serious lack of community consensus on structure. Most people are borrowing ideas from other frameworks at best. This is pretty hard for beginniners who are used to jumping into a language that has a well established operating style. To help start getting Go there (at least for websites), I've made a skeleton that should serve well for any small-medium sized site.
 
 You can checkout the skeleton [source code here](https://github.com/jadekler/git-go-websiteskeleton).
@@ -813,3 +727,9 @@ Again, for the sake of brevity I'm skipping a lot. If you're here and the above 
 
 Therefore, I hope that you - the reader - finds something here of worth. And if nothing else, go fork my repo for this site (https://github.com/jadekler/git-go-jeansite) and start your own blog!'}
 ])
+
+Dir[File.dirname(__FILE__) + '/blogs/*.rb'].each do |file|
+    require file
+end
+
+blogs = @blogs
