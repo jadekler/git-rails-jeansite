@@ -1,0 +1,3 @@
+@blogs.push(Blog.create({title: 'Hello World', created_at: DateTime.parse('28-12-2013'), content: 'This blog was built to learn Go but also to post things that I pick up along the way. I believe strongly that programmers as a whole benefit from a community of giving, not just one of taking.
+
+Therefore, I hope that you - the reader - finds something here of worth. And if nothing else, go fork my repo for this site (https://github.com/jadekler/git-go-jeansite) and start your own blog!'}))

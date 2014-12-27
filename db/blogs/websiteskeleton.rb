@@ -1,0 +1,5 @@
+@blogs.push(Blog.create({title: 'Go Website Skeleton', created_at: DateTime.parse('26-03-2014'), content: "So after working with Go for a while in creating sites, I've noticed a serious lack of community consensus on structure. Most people are borrowing ideas from other frameworks at best. This is pretty hard for beginniners who are used to jumping into a language that has a well established operating style. To help start getting Go there (at least for websites), I've made a skeleton that should serve well for any small-medium sized site.
+
+You can checkout the skeleton [source code here](https://github.com/jadekler/git-go-websiteskeleton).
+
+I went ahead and posted it on Hacker news and Reddit, where I got a lot of (fair) criticism that has helped refine it and make it pretty lean. If you have any ideas for further improvements, I'd really love to hear them! Shoot me an email at [mailto:jadekler@gmail.com](jadekler@gmail.com)."}))

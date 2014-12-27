@@ -1,0 +1,1 @@
+@blogs.push(Blog.create({title: 'Happy New Year!', created_at: DateTime.parse('01-01-2014'), content: "Happy new year's everyone! Let's spend the year building awesome things, being good to each other, and trying not to screw anything up."}))
