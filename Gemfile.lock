@@ -58,6 +58,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     redcarpet (2.3.0)
+    sass (3.4.9)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -80,4 +81,5 @@ PLATFORMS
 DEPENDENCIES
   rails (= 4.1.6)
   redcarpet
+  sass
   sqlite3
