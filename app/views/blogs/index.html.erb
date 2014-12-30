@@ -1,9 +1,13 @@
-<% @blogs.each do |blog| %>
-  <div class="row">
-    <h5><%= link_to blog.title, "/blogs/#{blog.id}" %></h5>
-  </div>
-  <div class="row">
-    <div class="one column">boom</div>
-    <div class="eleven columns">bam</div>
-  </div>
-<% end %>
+<div class="container" id="blogs">
+    <% @blogs.each do |blog| %>
+        <div class="blog">
+            <div class="row">
+                <h5><%= link_to blog.title, "/blogs/#{blog.id}" %></h5>
+            </div>
+            <div class="row">
+                <div class="two columns"><%= Date.strptime(blog.created_at.to_i.to_s, '%s').to_s %></div>
+                <div class="ten columns"><%= markdown blog.smart_short %></div>
+            </div>
+        </div>
+    <% end %>
+</div>

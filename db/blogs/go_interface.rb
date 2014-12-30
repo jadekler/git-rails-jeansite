@@ -1,4 +1,4 @@
-@blogs.push(Blog.create({title: 'The Go interface{} In Ambiguity', created_at: DateTime.parse('25-05-2014'), content: "As many of you may be aware, the interface{} type is basically Go's way of placeholding a spot for ANY other type. As a result, following code works perfectly fine:
+@blogs.push(Blog.create({title: 'The Go interface{} In Ambiguity', created_at: DateTime.parse('25-05-2014'), content: "As many of you may be aware, the `interface{}` type is basically Go's way of placeholding a spot for ANY other type. As a result, following code works perfectly fine:
 ```
 package main
 
