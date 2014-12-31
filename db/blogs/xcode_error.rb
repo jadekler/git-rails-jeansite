@@ -1,10 +1,10 @@
 @blogs.push(Blog.create({title: 'xCode Mach Error 1102', created_at: DateTime.parse('08-07-2014'), content: "So I started playing with Swift recently. I've never had much inclination to build iOS apps due to the closed platform, but I figured I'd give it a shot. Immediately I hit an error that took me a week to fix: Mach Error 1102 - Unknown Error Code. Before I start, please note that these are simply the steps I took to get there - the error sort of just disappeared overnight in the middle of my trying to fix it. Lastly, please note that this was a fresh install of xCode 6 (as in, I installed 6 without 5 before it) so it may have been a case of initialized caches or something. Anyways, this is how I went about fixing it.
 
 1. Reset iOS Simulator Content + Settings
-    1. Open the iOS simulator at /wherever-xcode-is-installed/Contents/Applications/iOS Simualtor
+    1. Open the iOS simulator at `/wherever-xcode-is-installed/Contents/Applications/iOS Simualtor`
     1. Click iOS Simulator at the top left
     1. Click Reset Content and Settings (this didn't work for you, but it has for others, so give it a quick shot)
-1. Ensure that xCode is under /Applications
+1. Ensure that xCode is under `/Applications`
 1. Give it the 'ol Uninstall-Reinstall
 1. Download the latest Components
     1. In xCode, go to Preferences
