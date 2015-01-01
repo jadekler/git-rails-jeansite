@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get '/blogs/:id', to: 'blogs#show'
 
   get '/projects', to: 'projects#index'
+
+  get '/about', to: 'about#index'
 end
