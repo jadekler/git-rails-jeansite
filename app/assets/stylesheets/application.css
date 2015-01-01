@@ -8,17 +8,17 @@
     border-bottom: 1px solid #D0D0D0;
 }
 
-#navbar h4 {
+#navbar p {
     display: inline;
     margin: 0;
-}
-
-#navbar h4:not(:first-of-type) {
-    padding-left: 30px;
-}
-
-#navbar h4 a {
-    text-decoration: none;
+    font-size: 18px;
+    padding-right: 20px;
+    a {
+        text-decoration: none;
+    }
+    :not(:first-of-type) {
+        padding-left: 30px;
+    }
 }
 
 #main {
