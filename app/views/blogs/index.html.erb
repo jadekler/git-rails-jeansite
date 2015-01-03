@@ -1,9 +1,11 @@
 <div class="container" id="blogs">
     <% @blogs.each do |blog| %>
         <div class="blog">
-            <h5><%= link_to blog.title, "/blogs/#{blog.id}" %></h5>
-            <%= Date.strptime(blog.created_at.to_i.to_s, '%s').to_s %>
-            <%= markdown blog.smart_short %>
+            <div class="date"><%= Date.strptime(blog.created_at.to_i.to_s, '%s').strftime('%d %b %Y') %></div>
+            <div class="content">
+                <h5><%= link_to blog.title, "/blogs/#{blog.id}" %></h5>
+                <%= markdown blog.smart_short %>
+            </div>
         </div>
     <% end %>
 </div>

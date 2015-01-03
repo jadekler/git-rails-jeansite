@@ -1,11 +1,26 @@
+.date {
+    display: inline-block;
+    font-size: .9em;
+    opacity: .6;
+    width: 30px;
+    word-spacing: 30px;
+    margin-right: 20px;
+}
+
+.content {
+    display: inline-block;
+}
+
 #blogs .blog {
     margin-bottom: 20px;
 }
 
-#blogs h5 a {
-    text-decoration: none;
-    &:hover {
-        text-decoration: underline;
+#blogs h5 {
+    a {
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
 
