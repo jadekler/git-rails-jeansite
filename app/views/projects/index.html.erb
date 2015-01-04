@@ -1,19 +1,21 @@
-<% @projects.each_with_index do |project, index| %>
-    <% if index%2 == 0 %>
-        <div class="row">
-    <% end %>
-    <div class="six columns project">
-      <p><%= project.title %></p>
-      <p>
-        <% if project.image_url %>
-          THERES AN IMAGE
-        <% else %>
-          <i class="fa fa-picture-o fa-5x"></i>
+<div class="container">
+    <% @projects.each_with_index do |project, index| %>
+        <% if index%2 == 0 %>
+            <div class="row">
         <% end %>
-      </p>
-      <p><a href="<%= project.github_url %>" target="_blank"><%= project.github_url %></a></p>
-    </div>
-    <% if index%2 == 1 %>
+        <div class="six columns project">
+          <p><%= project.title %></p>
+          <p>
+            <% if project.image_url %>
+              THERES AN IMAGE
+            <% else %>
+              <i class="fa fa-picture-o fa-5x"></i>
+            <% end %>
+          </p>
+          <p><a href="<%= project.github_url %>" target="_blank"><%= project.github_url %></a></p>
         </div>
+        <% if index%2 == 1 %>
+            </div>
+        <% end %>
     <% end %>
-<% end %>
+</div>
