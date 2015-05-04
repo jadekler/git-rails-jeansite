@@ -13,20 +13,20 @@
 
 ActiveRecord::Schema.define(version: 20141217090540) do
 
-  create_table "blogs", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "title"
-    t.string   "short"
-    t.binary   "content",    limit: 10485760
-  end
+    create_table 'blogs', force: true do |t|
+        t.datetime 'created_at'
+        t.datetime 'updated_at'
+        t.string 'title'
+        t.string 'short'
+        t.binary 'content', limit: 10485760
+    end
 
-  create_table "projects", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "github_url"
-    t.string   "title"
-    t.string   "image_url"
-  end
+    create_table 'projects', force: true do |t|
+        t.datetime 'created_at'
+        t.datetime 'updated_at'
+        t.string 'github_url'
+        t.string 'title'
+        t.string 'image_url'
+    end
 
 end
