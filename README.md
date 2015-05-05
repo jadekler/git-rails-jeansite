@@ -1,6 +1,8 @@
 git-rails-jeansite
 ==================
 
+[![Build Status](https://travis-ci.org/jadekler/git-rails-jeansite.svg)](https://travis-ci.org/jadekler/git-rails-jeansite)
+
 ## Installation
 
 1. Install ruby 2.1.2
