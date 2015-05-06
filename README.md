@@ -3,6 +3,8 @@ git-rails-jeansite
 
 [![Build Status](https://travis-ci.org/jadekler/git-rails-jeansite.svg)](https://travis-ci.org/jadekler/git-rails-jeansite)
 
+Personal website ported from [Go](https://github.com/jadekler/git-go-jeansite) to rails. At this point it seems perpetually unfinished.
+
 ## Installation
 
 1. Install ruby 2.1.2
